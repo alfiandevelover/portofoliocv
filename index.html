@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alfian Deta Fiqri | Portfolio & CV</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #050508;
+            --panel-dark: #0b0c16;
+            --accent-cyan: #00f2fe;
+            --accent-pink: #4facfe;
+            --text-white: #ffffff;
+            --text-gray: #a0a5c0;
+            --glow: 0 0 20px rgba(0, 242, 254, 0.6);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-dark); color: var(--text-white); overflow-x: hidden; }
+
+        /* Animated Particle Background */
+        #bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; opacity: 0.6; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: #1f2335; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+
+        /* Header / Navbar */
+        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(5, 5, 8, 0.75); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 100; animation: fadeInDown 1s ease-out; }
+        .logo-container { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .logo-box { background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan)); color: var(--bg-dark); font-weight: 900; font-size: 20px; padding: 4px 12px; border-radius: 6px; transform: skewX(-10deg); box-shadow: var(--glow); transition: all 0.3s; }
+        .logo-container:active .logo-box { transform: skewX(-10deg) scale(0.9); }
+        .logo-text { font-weight: 700; letter-spacing: 1px; font-size: 18px; background: linear-gradient(to right, #fff, var(--text-gray)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        nav ul { display: flex; list-style: none; gap: 35px; }
+        nav ul li a { text-decoration: none; color: var(--text-gray); font-size: 15px; font-weight: 500; transition: all 0.3s ease; position: relative; padding: 5px 0; }
+        nav ul li a:hover, nav ul li a.active { color: var(--accent-cyan); text-shadow: var(--glow); }
+        nav ul li a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background: var(--accent-cyan); transition: width 0.3s ease; }
+        nav ul li a:hover::after { width: 100%; }
+
+        /* Interactive Elements */
+        .interactive { position: relative; overflow: hidden; transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.2s; cursor: pointer; }
+        .interactive:active { transform: scale(0.96); }
+        .ripple { position: absolute; border-radius: 50%; background: rgba(0, 242, 254, 0.4); transform: scale(0); animation: ripple-anim 0.6s linear; pointer-events: none; }
+        @keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
+
+        /* Hero Section */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; position: relative; }
+        .hero-badge { background: rgba(0, 242, 254, 0.1); border: 1px solid rgba(0, 242, 254, 0.3); color: var(--accent-cyan); padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; letter-spacing: 2px; margin-bottom: 25px; text-transform: uppercase; animation: pulse 2s infinite; }
+        .glitch-title { font-size: 4.5rem; font-weight: 900; letter-spacing: -1px; background: linear-gradient(to right, #fff 30%, var(--text-gray)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: relative; animation: fadeInUp 1s ease-out 0.2s both; }
+        .hero-tags { margin: 20px 0 40px 0; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; animation: fadeInUp 1s ease-out 0.4s both; }
+        .hero-tag { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 8px 18px; border-radius: 8px; font-size: 14px; color: var(--text-gray); }
+        .hero-tag:hover { border-color: var(--accent-cyan); color: #fff; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 242, 254, 0.2); }
+        .cta-btn { background: linear-gradient(90deg, var(--accent-pink), var(--accent-cyan)); color: var(--bg-dark); padding: 14px 35px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 16px; transition: all 0.3s ease; box-shadow: var(--glow); animation: fadeInUp 1s ease-out 0.6s both; }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(0, 242, 254, 0.8); }
+
+        /* Global Sections */
+        section { padding: 120px 8% 80px 8%; max-width: 1400px; margin: 0 auto; }
+        .section-header { margin-bottom: 60px; position: relative; }
+        .section-header h2 { font-size: 2.2rem; font-weight: 800; display: inline-block; background: linear-gradient(135deg, #fff, var(--text-gray)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .section-header::after { content: ''; display: block; width: 60px; height: 3px; background: var(--accent-cyan); margin-top: 10px; border-radius: 2px; box-shadow: var(--glow); }
+
+        /* CV / Data Diri Section */
+        .cv-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; }
+        .cv-panel { background: var(--panel-dark); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 40px; position: relative; }
+        .cv-panel h3 { font-size: 22px; margin-bottom: 25px; color: var(--accent-cyan); display: flex; align-items: center; gap: 10px; }
+        .data-list { display: flex; flex-direction: column; gap: 15px; }
+        .data-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: rgba(255, 255, 255, 0.02); border-radius: 10px; border-left: 3px solid transparent; transition: all 0.3s ease; }
+        .data-item:hover { border-left-color: var(--accent-cyan); background: rgba(0, 242, 254, 0.05); transform: translateX(5px); }
+        .data-item span:first-child { color: var(--text-gray); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        .data-item span:last-child { color: #fff; font-size: 15px; font-weight: 500; text-align: right; max-width: 60%; line-height: 1.4; }
+
+        .timeline { margin-top: 20px; position: relative; }
+        .timeline::before { content: ''; position: absolute; left: 19px; top: 0; width: 2px; height: 100%; background: rgba(0, 242, 254, 0.2); }
+        .timeline-item { position: relative; padding-left: 50px; margin-bottom: 30px; transition: all 0.3s; padding-bottom: 20px; border-radius: 10px; }
+        .timeline-item:hover { background: rgba(255, 255, 255, 0.02); transform: translateX(10px); }
+        .timeline-item::before { content: ''; position: absolute; left: 11px; top: 5px; width: 18px; height: 18px; border-radius: 50%; background: var(--bg-dark); border: 3px solid var(--accent-cyan); box-shadow: var(--glow); transition: all 0.3s; z-index: 2; }
+        .timeline-item:hover::before { background: var(--accent-cyan); transform: scale(1.2); }
+        .timeline-date { font-size: 13px; color: var(--accent-cyan); font-weight: 700; letter-spacing: 1px; margin-bottom: 5px; }
+        .timeline-title { font-size: 18px; color: #fff; font-weight: 700; margin-bottom: 5px; }
+        .timeline-desc { font-size: 14px; color: var(--text-gray); }
+
+        .contact-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 30px; }
+        .contact-card { display: flex; align-items: center; gap: 15px; padding: 15px 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; color: #fff; text-decoration: none; transition: all 0.3s; }
+        .contact-card:hover { border-color: var(--accent-cyan); background: rgba(0, 242, 254, 0.05); }
+        .contact-card i { font-size: 20px; color: var(--accent-cyan); width: 25px; text-align: center; }
+        .contact-card.insta:hover { border-color: #E1306C; background: rgba(225, 48, 108, 0.1); }
+        .contact-card.insta i { color: #E1306C; }
+
+        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .social-card { display: flex; align-items: center; justify-content: space-between; padding: 20px; border-radius: 16px; text-decoration: none; color: white; border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s ease; }
+        .social-card.tiktok { background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(37,244,238,0.1)); }
+        .social-card.tiktok:hover { border-color: #25F4EE; box-shadow: 0 10px 30px rgba(37,244,238,0.2); }
+        .social-card.youtube { background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(255,0,0,0.1)); }
+        .social-card.youtube:hover { border-color: #FF0000; box-shadow: 0 10px 30px rgba(255,0,0,0.2); }
+        .social-content { display: flex; align-items: center; gap: 15px; }
+        .social-content i { font-size: 30px; }
+        .social-text h3 { font-size: 16px; }
+        .social-text p { font-size: 13px; color: var(--text-gray); }
+
+        /* Skills Section (ENHANCED DENGAN BADGE SKILL) */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .skill-card { background: var(--panel-dark); border: 1px solid rgba(255, 255, 255, 0.02); border-radius: 16px; padding: 35px 30px; transition: all 0.4s ease; display: flex; flex-direction: column; height: 100%; }
+        .skill-card:hover { transform: translateY(-8px); background: #111322; border-color: rgba(0,242,254,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .skill-header { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
+        .skill-icon-wrapper { width: 60px; height: 60px; border-radius: 12px; background: rgba(255, 255, 255, 0.02); display: flex; align-items: center; justify-content: center; color: var(--accent-cyan); font-size: 24px; transition: all 0.3s ease; flex-shrink: 0; }
+        .skill-card:hover .skill-icon-wrapper { background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan)); color: var(--bg-dark); box-shadow: var(--glow); transform: rotate(10deg); }
+        .skill-card h3 { font-size: 20px; color: #fff; line-height: 1.2; }
+        .skill-card p { font-size: 14.5px; color: var(--text-gray); line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+        .skill-tags span { background: rgba(0, 242, 254, 0.05); border: 1px solid rgba(0, 242, 254, 0.2); color: var(--accent-cyan); padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; }
+        .skill-card:hover .skill-tags span { background: rgba(0, 242, 254, 0.15); border-color: var(--accent-cyan); }
+
+        /* Portfolio Grid */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .portfolio-item { background: var(--panel-dark); border-radius: 20px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.02); transition: all 0.4s ease; }
+        .media-container { width: 100%; height: 480px; background: #131524; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+        .media-placeholder { text-align: center; color: #3b3f58; transition: all 0.4s; }
+        .media-placeholder i { font-size: 45px; margin-bottom: 15px; }
+        .media-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(5,5,8,0.95) 20%, rgba(5,5,8,0.4) 60%, transparent); opacity: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; transition: all 0.4s ease; }
+        .portfolio-item:hover .media-overlay { opacity: 1; }
+        .portfolio-item:hover .media-placeholder { transform: scale(1.1); }
+        .portfolio-item:hover { transform: translateY(-5px); border-color: rgba(0, 242, 254, 0.3); box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
+        .item-tag { font-size: 11px; background: rgba(0, 242, 254, 0.15); color: var(--accent-cyan); padding: 4px 10px; border-radius: 4px; font-weight: 600; text-transform: uppercase; margin-right: 5px; display: inline-block;}
+        .media-overlay h3 { font-size: 20px; margin-bottom: 8px; margin-top: 10px; }
+        .media-overlay p { font-size: 13px; color: var(--text-gray); line-height: 1.5; }
+
+        /* Footer */
+        footer { border-top: 1px solid rgba(255, 255, 255, 0.04); background: #030305; padding: 40px 8%; text-align: center; margin-top: 100px; }
+        footer p { font-size: 14px; color: #525670; }
+
+        /* Animations & Media Queries */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(0, 242, 254, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); } }
+
+        @media (max-width: 992px) { .cv-grid { grid-template-columns: 1fr; } .glitch-title { font-size: 3.2rem; } .social-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { nav ul { display: none; } section { padding: 80px 5% 40px 5%; } .data-item { flex-direction: column; align-items: flex-start; gap: 5px; } .data-item span:last-child { max-width: 100%; text-align: left; } }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <nav>
+        <div class="logo-container interactive">
+            <div class="logo-box">S</div>
+            <div class="logo-text">portofolio cv</div>
+        </div>
+        <ul>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#cv">Resume</a></li>
+            <li><a href="#skills">Kemampuan</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-badge">Digital Portfolio</div>
+        <h1 class="glitch-title">Alfian Deta Fiqri</h1>
+        <div class="hero-tags">
+            <div class="hero-tag interactive"><i class="fas fa-file-excel" style="color: #217346;"></i> Ms. Excel</div>
+            <div class="hero-tag interactive"><i class="fas fa-robot"></i> APK Modder</div>
+            <div class="hero-tag interactive"><i class="fas fa-film"></i> Video Editor</div>
+            <div class="hero-tag interactive"><i class="fas fa-chart-line"></i> Sales Expert</div>
+        </div>
+        <a href="#cv" class="cta-btn interactive">Lihat Profil Lengkap</a>
+    </section>
+
+    <!-- CV / Resume Section -->
+    <section id="cv">
+        <div class="section-header"><h2>Curriculum Vitae</h2></div>
+        <div class="cv-grid">
+            <div class="cv-panel">
+                <h3><i class="fas fa-id-card"></i> Data Pribadi</h3>
+                <div class="data-list">
+                    <div class="data-item interactive"><span>Nama Lengkap</span><span>Alfian Deta Fiqri</span></div>
+                    <div class="data-item interactive"><span>Jenis Kelamin</span><span>Laki-Laki</span></div>
+                    <div class="data-item interactive"><span>Status</span><span>Belum Menikah</span></div>
+                    <div class="data-item interactive"><span>Kewarganegaraan</span><span>Indonesia</span></div>
+                    <div class="data-item interactive"><span>Alamat Lengkap</span><span>Jl. Gang Cipacing Madalangu, Cipacing, Jatinangor, Sumedang</span></div>
+                </div>
+
+                <h3 style="margin-top: 40px;"><i class="fas fa-address-book"></i> Hubungi Saya</h3>
+                <div class="contact-grid">
+                    <a href="tel:+62895352382245" class="contact-card interactive"><i class="fas fa-phone-alt"></i> +62 895-3523-82245</a>
+                    <a href="mailto:alfiandetafiqri@gmail.com" class="contact-card interactive"><i class="fas fa-envelope"></i> alfiandetafiqri@gmail.com</a>
+                    <a href="https://instagram.com/alfiandf01" target="_blank" class="contact-card interactive insta"><i class="fab fa-instagram"></i> @alfiandf01</a>
+                </div>
+            </div>
+
+            <div class="cv-panel">
+                <h3><i class="fas fa-graduation-cap"></i> Riwayat Pendidikan</h3>
+                <div class="timeline">
+                    <div class="timeline-item interactive">
+                        <div class="timeline-date">2022 - 2025</div>
+                        <div class="timeline-title">MTs Al-Falah Cileles</div>
+                        <div class="timeline-desc">Pendidikan Menengah Pertama</div>
+                    </div>
+                    <div class="timeline-item interactive">
+                        <div class="timeline-date">2016 - 2022</div>
+                        <div class="timeline-title">SDN Cipacing Madalangu II</div>
+                        <div class="timeline-desc">Pendidikan Dasar</div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 40px;"><i class="fas fa-hashtag"></i> Media Sosial</h3>
+                <div class="social-grid">
+                    <a href="https://www.tiktok.com/@adfnumberone" target="_blank" class="social-card tiktok interactive">
+                        <div class="social-content"><i class="fab fa-tiktok"></i><div class="social-text"><h3>TikTok</h3><p>@adfnumberone</p></div></div>
+                    </a>
+                    <a href="https://www.youtube.com/@shijustr" target="_blank" class="social-card youtube interactive">
+                        <div class="social-content"><i class="fab fa-youtube"></i><div class="social-text"><h3>YouTube</h3><p>@shijustr</p></div></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section (DIPERTEGAS DENGAN TAG SPESIFIK & LAYOUT BARU) -->
+    <section id="skills">
+        <div class="section-header"><h2>Keahlian Profesional</h2></div>
+        <div class="skills-grid">
+            
+            <!-- Microsoft Excel -->
+            <div class="skill-card interactive">
+                <div class="skill-header">
+                    <div class="skill-icon-wrapper"><i class="fas fa-file-excel"></i></div>
+                    <h3>Microsoft Excel</h3>
+                </div>
+                <p>Pengolahan dan analisis data tingkat lanjut. Mampu merancang dashboard pelaporan interaktif, mengelola formula kompleks, memanfaatkan PivotTable, hingga otomatisasi laporan berbasis data bisnis.</p>
+                <div class="skill-tags">
+                    <span>PivotTable</span>
+                    <span>Data Analysis</span>
+                    <span>Dashboard</span>
+                    <span>Formula Logika</span>
+                </div>
+            </div>
+
+            <!-- Video Editing -->
+            <div class="skill-card interactive">
+                <div class="skill-header">
+                    <div class="skill-icon-wrapper"><i class="fas fa-film"></i></div>
+                    <h3>Short-Form Video Creator</h3>
+                </div>
+                <p>Spesialis memproduksi konten video vertikal (9:16) yang highly-engaging untuk platform sosial media. Mahir mengaplikasikan penceritaan visual yang cepat, efek surreal dan glitch yang eksperimental, serta sound design yang t
